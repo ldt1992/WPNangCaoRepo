@@ -33,7 +33,7 @@ if ( !class_exists('My_First_Plugin') ) { // Nếu class My_First_Plugin chưa t
     }
 }
 
-function load(){
+function mfp_load(){ // Hàm load Shortcode
     global $mfp;
     $mfp = new My_First_Plugin();
 }
