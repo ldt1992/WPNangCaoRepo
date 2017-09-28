@@ -15,3 +15,26 @@
  * Author URI: http://ductai.com // Địa chỉ trang chủ của tác giả
  * License: GPLv2 or later // Thông tin license của plugin, nếu không quan tâm thì bạn cứ để GPLv2 vào đây
  */
+
+if ( !class_exists('My_First_Plugin') ) { // Nếu class My_First_Plugin chưa tồn tại thì tạo class này
+    class My_First_Plugin {
+        function __construct() // Hàm Khởi tạo
+        {
+            if ( !function_exist( 'add_shortcode' ) ) {
+                return;
+            }
+            add_shortcode('hello', array(&$this, 'hello_func')); // tạo 1 neo (hook) cho thẻ shortcode
+        }
+
+        function hello_func( $atts = array(), $content = null ) { // Tạo hàm hello_func
+            extract(shortcode_atts( array('name' => 'World'), $atts )); // Bung cac bien tuy chon cua Shortcode
+            return '<div><p>Hello '.$name.'!!!</p></div>'; // Giá trị trả về của Shortcodes
+        }
+    }
+}
+
+function load(){
+    global $mfp;
+    $mfp = new My_First_Plugin();
+}
+add_action('plugins_loaded', 'mfp_load');
