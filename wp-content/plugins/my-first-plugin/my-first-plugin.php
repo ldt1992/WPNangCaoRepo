@@ -18,9 +18,12 @@
 
 if ( !class_exists('My_First_Plugin') ) { // Nếu class My_First_Plugin chưa tồn tại thì tạo class này
     class My_First_Plugin {
+        /**
+         * My_First_Plugin constructor.
+         */
         function __construct() // Hàm Khởi tạo
         {
-            if ( !function_exist( 'add_shortcode' ) ) {
+            if ( !function_exists( 'add_shortcode' ) ) {
                 return;
             }
             add_shortcode('hello', array(&$this, 'hello_func')); // tạo 1 neo (hook) cho thẻ shortcode
